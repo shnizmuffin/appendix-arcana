@@ -1,0 +1,67 @@
+##### OS Files
+
+# Windows
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+# OSX
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+##### Program Files
+
+# Dreamweaver
+
+_notes
+dwsync.xml
+
+# Eclipse
+
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.externalToolBuilders/
+*.launch
+.cproject
+.buildpath
+.texlipse
+
+# SublimeText
+
+*.sublime-workspace
+*.sublime-project
+
+# TextMate
+
+*.tmproj
+*.tmproject
+tmtags
+
+##### Utility Files
+
+# SASS
+
+*.sass-cache
+*.scssc
