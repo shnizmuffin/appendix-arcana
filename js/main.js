@@ -90,10 +90,10 @@ $(function() {
 		// The DOM events specific to an item.
 		events: {
 			"click .toggle": "toggleKnown",
-		//	"dblclick label.todo-content": "edit",
+			//	"dblclick label.todo-content": "edit",
 			"click .spell-destroy": "clear",
-		//	"keypress .edit": "updateOnEnter",
-		//	"blur .edit": "close"
+			//	"keypress .edit": "updateOnEnter",
+			//	"blur .edit": "close"
 		},
 
 		// The SpellView listens for changes to its model, re-rendering. Since there's
@@ -145,267 +145,291 @@ $(function() {
 
 	// ---------- The Application ---------- 
 
-  // The main view that lets a user manage their spell items
-  var ManageSpellsView = Parse.View.extend({
+	// The main view that lets a user manage their spell items
+	var ManageSpellsView = Parse.View.extend({
 
-    // Our template for the line of statistics at the bottom of the app.
-    //statsTemplate: _.template($('#stats-template').html()),
+		// Our template for the line of statistics at the bottom of the app.
+		//statsTemplate: _.template($('#stats-template').html()),
 
-    // Delegated events for creating new items, and clearing completed ones.
-    events: {
-      //"keypress #new-spell":  "createOnEnter",
-      //"click #clear-completed": "clearCompleted",
-      "click #toggle-all": "toggleAllComplete",
-      "click .log-out": "logOut",
-      "click ul#filters a": "selectFilter"
-    },
+		// Delegated events for creating new items, and clearing completed ones.
+		events: {
+			//"keypress #new-spell":  "createOnEnter",
+			//"click #clear-completed": "clearCompleted",
+			"click #toggle-all": "toggleAllComplete",
+			"click .log-out": "logOut",
+			"click ul#filters a": "selectFilter"
+		},
 
-    el: ".content",
+		el: ".content",
 
-    // At initialization we bind to the relevant events on the `Spells`
-    // collection, when items are added or changed. Kick things off by
-    // loading any preexisting spells that might be saved to Parse.
-    initialize: function() {
-      var self = this;
+		// At initialization we bind to the relevant events on the `Spells`
+		// collection, when items are added or changed. Kick things off by
+		// loading any preexisting spells that might be saved to Parse.
+		initialize: function() {
+			var self = this;
 
-      _.bindAll(this, 'addOne', 'addAll', 'addSome', 'render', 'toggleAllComplete', 'logOut', 'createOnEnter');
+			_.bindAll(this, 'addOne', 'addAll', 'addSome', 'render', 'toggleAllComplete', 'logOut', 'createOnEnter');
 
-      // Main spell management template
-      this.$el.html(_.template($("#manage-spells-template").html()));
-      
-      this.input = this.$("#new-spell");
-      this.allCheckbox = this.$("#toggle-all")[0];
+			// Main spell management template
+			this.$el.html(_.template($("#manage-spells-template").html()));
 
-      // Create our collection of Spells
-      this.spells = new SpellList;
+			this.input = this.$("#new-spell");
+			this.allCheckbox = this.$("#toggle-all")[0];
 
-      // Setup the query for the collection to look for spells from the current user
-      this.spells.query = new Parse.Query(Spell);
-      this.spells.query.equalTo("user", Parse.User.current());
-        
-      this.spells.bind('add',     this.addOne);
-      this.spells.bind('reset',   this.addAll);
-      this.spells.bind('all',     this.render);
+			// Create our collection of Spells
+			this.spells = new SpellList;
 
-      // Fetch all the spell items for this user
-      this.spells.fetch();
+			// Setup the query for the collection to look for spells from the current user
+			this.spells.query = new Parse.Query(SpellObject);
+			this.spells.query.equalTo("user", Parse.User.current());
 
-      state.on("change", this.filter, this);
-    },
+			this.spells.bind('add', this.addOne);
+			this.spells.bind('reset', this.addAll);
+			this.spells.bind('all', this.render);
 
-    // Logs out the user and shows the login view
-    logOut: function(e) {
-      Parse.User.logOut();
-      new LogInView();
-      this.undelegateEvents();
-      delete this;
-    },
+			// Fetch all the spell items for this user
+			this.spells.fetch();
 
-    // Re-rendering the App just means refreshing the statistics -- the rest
-    // of the app doesn't change.
-    render: function() {
-      var known = this.spells.known().length;
-      //var remaining = this.spells.remaining().length;
+			state.on("change", this.filter, this);
+		},
 
-      this.$('#todo-stats').html(this.statsTemplate({
-        total:      this.spells.length,
-        known:      known
-      //  remaining:  remaining
-      }));
+		// Logs out the user and shows the login view
+		logOut: function(e) {
+			Parse.User.logOut();
+			new LogInView();
+			this.undelegateEvents();
+			delete this;
+		},
 
-      this.delegateEvents();
+		// Re-rendering the App just means refreshing the statistics -- the rest
+		// of the app doesn't change.
+		render: function() {
+			//var known = this.spells.known().length;
+			//var remaining = this.spells.remaining().length;
 
-      //this.allCheckbox.checked = !remaining;
-    },
+			//this.$('#todo-stats').html(this.statsTemplate({
+			//	total: this.spells.length,
+			//	known: known
+				//  remaining:  remaining
+			//}));
 
-    // Filters the list based on which type of filter is selected
-    selectFilter: function(e) {
-      var el = $(e.target);
-      var filterValue = el.attr("id");
-      state.set({filter: filterValue});
-      Parse.history.navigate(filterValue);
-    },
+			this.delegateEvents();
 
-    filter: function() {
-      var filterValue = state.get("filter");
-      this.$("ul#filters a").removeClass("selected");
-      this.$("ul#filters a#" + filterValue).addClass("selected");
-      if (filterValue === "all") {
-        this.addAll();
-      } else if (filterValue === "completed") {
-        this.addSome(function(item) { return item.get('done') });
-      } else {
-        this.addSome(function(item) { return !item.get('done') });
-      }
-    },
+			//this.allCheckbox.checked = !remaining;
+		},
 
-    // Resets the filters to display all spells
-    resetFilters: function() {
-      this.$("ul#filters a").removeClass("selected");
-      this.$("ul#filters a#all").addClass("selected");
-      this.addAll();
-    },
+		// Filters the list based on which type of filter is selected
+		selectFilter: function(e) {
+			var el = $(e.target);
+			var filterValue = el.attr("id");
+			state.set({
+				filter: filterValue
+			});
+			Parse.history.navigate(filterValue);
+		},
 
-    // Add a single spell item to the list by creating a view for it, and
-    // appending its element to the `<ul>`.
-    addOne: function(spell) {
-      var view = new SpellView({model: spell});
-      this.$("#spell-list").append(view.render().el);
-    },
+		filter: function() {
+			var filterValue = state.get("filter");
+			this.$("ul#filters a").removeClass("selected");
+			this.$("ul#filters a#" + filterValue).addClass("selected");
+			if (filterValue === "all") {
+				this.addAll();
+			} else if (filterValue === "completed") {
+				this.addSome(function(item) {
+					return item.get('done')
+				});
+			} else {
+				this.addSome(function(item) {
+					return !item.get('done')
+				});
+			}
+		},
 
-    // Add all items in the Spells collection at once.
-    addAll: function(collection, filter) {
-      this.$("#spell-list").html("");
-      this.spells.each(this.addOne);
-    },
+		// Resets the filters to display all spells
+		resetFilters: function() {
+			this.$("ul#filters a").removeClass("selected");
+			this.$("ul#filters a#all").addClass("selected");
+			this.addAll();
+		},
 
-    // Only adds some spells, based on a filtering function that is passed in
-    addSome: function(filter) {
-      var self = this;
-      this.$("#spell-list").html("");
-      this.spells.chain().filter(filter).each(function(item) { self.addOne(item) });
-    },
+		// Add a single spell item to the list by creating a view for it, and
+		// appending its element to the `<ul>`.
+		addOne: function(spell) {
+			var view = new SpellView({
+				model: spell
+			});
+			this.$("#spell-list").append(view.render().el);
+		},
 
-    // If you hit return in the main input field, create new Spell model
-    createOnEnter: function(e) {
-      var self = this;
-      if (e.keyCode != 13) return;
+		// Add all items in the Spells collection at once.
+		addAll: function(collection, filter) {
+			this.$("#spell-list").html("");
+			this.spells.each(this.addOne);
+		},
 
-      this.spells.create({
-        content: this.input.val(),
-        order:   this.spells.nextOrder(),
-        done:    false,
-        user:    Parse.User.current(),
-        ACL:     new Parse.ACL(Parse.User.current())
-      });
+		// Only adds some spells, based on a filtering function that is passed in
+		addSome: function(filter) {
+			var self = this;
+			this.$("#spell-list").html("");
+			this.spells.chain().filter(filter).each(function(item) {
+				self.addOne(item)
+			});
+		},
 
-      this.input.val('');
-      this.resetFilters();
-    },
+		// If you hit return in the main input field, create new Spell model
+		createOnEnter: function(e) {
+			var self = this;
+			if (e.keyCode != 13) return;
 
-    // Clear all known spell items, destroying their models.
-    clearCompleted: function() {
-      _.each(this.spells.known(), function(spell){ spell.destroy(); });
-      return false;
-    },
+			this.spells.create({
+				content: this.input.val(),
+				order: this.spells.nextOrder(),
+				done: false,
+				user: Parse.User.current(),
+				ACL: new Parse.ACL(Parse.User.current())
+			});
 
-    toggleAllComplete: function () {
-      var done = this.allCheckbox.checked;
-      this.spells.each(function (spell) { spell.save({'known': known}); });
-    }
-  });
+			this.input.val('');
+			this.resetFilters();
+		},
 
-  var LogInView = Parse.View.extend({
-    events: {
-      "submit form.login-form": "logIn",
-      "submit form.signup-form": "signUp"
-    },
+		// Clear all known spell items, destroying their models.
+		clearCompleted: function() {
+			_.each(this.spells.known(), function(spell) {
+				spell.destroy();
+			});
+			return false;
+		},
 
-    el: ".content",
-    
-    initialize: function() {
-      _.bindAll(this, "logIn", "signUp");
-      this.render();
-    },
+		toggleAllComplete: function() {
+			var done = this.allCheckbox.checked;
+			this.spells.each(function(spell) {
+				spell.save({
+					'known': known
+				});
+			});
+		}
+	});
 
-    logIn: function(e) {
-      var self = this;
-      var username = this.$("#login-username").val();
-      var password = this.$("#login-password").val();
-      
-      Parse.User.logIn(username, password, {
-        success: function(user) {
-          new ManageSpellsView();
-          self.undelegateEvents();
-          delete self;
-        },
+	var LogInView = Parse.View.extend({
+		events: {
+			"submit form.login-form": "logIn",
+			"submit form.signup-form": "signUp"
+		},
 
-        error: function(user, error) {
-          self.$(".login-form .error").html("Invalid username or password. Please try again.").show();
-          this.$(".login-form button").removeAttr("disabled");
-        }
-      });
+		el: ".content",
 
-      this.$(".login-form button").attr("disabled", "disabled");
+		initialize: function() {
+			_.bindAll(this, "logIn", "signUp");
+			this.render();
+		},
 
-      return false;
-    },
+		logIn: function(e) {
+			var self = this;
+			var username = this.$("#login-username").val();
+			var password = this.$("#login-password").val();
 
-    signUp: function(e) {
-      var self = this;
-      var username = this.$("#signup-username").val();
-      var password = this.$("#signup-password").val();
-      
-      Parse.User.signUp(username, password, { ACL: new Parse.ACL() }, {
-        success: function(user) {
-          new ManageSpellsView();
-          self.undelegateEvents();
-          delete self;
-        },
+			Parse.User.logIn(username, password, {
+				success: function(user) {
+					new ManageSpellsView();
+					self.undelegateEvents();
+					delete self;
+				},
 
-        error: function(user, error) {
-          self.$(".signup-form .error").html(error.message).show();
-          this.$(".signup-form button").removeAttr("disabled");
-        }
-      });
+				error: function(user, error) {
+					self.$(".login-form .error").html("Invalid username or password. Please try again.").show();
+					this.$(".login-form button").removeAttr("disabled");
+				}
+			});
 
-      this.$(".signup-form button").attr("disabled", "disabled");
+			this.$(".login-form button").attr("disabled", "disabled");
 
-      return false;
-    },
+			return false;
+		},
 
-    render: function() {
-      this.$el.html(_.template($("#login-template").html()));
-      this.delegateEvents();
-    }
-  });
+		signUp: function(e) {
+			var self = this;
+			var username = this.$("#signup-username").val();
+			var password = this.$("#signup-password").val();
 
-  // The main view for the app
-  var AppView = Parse.View.extend({
-    // Instead of generating a new element, bind to the existing skeleton of
-    // the App already present in the HTML.
-    el: $("#main"),
+			Parse.User.signUp(username, password, {
+				ACL: new Parse.ACL()
+			}, {
+				success: function(user) {
+					new ManageSpellsView();
+					self.undelegateEvents();
+					delete self;
+				},
 
-    initialize: function() {
-      this.render();
-    },
+				error: function(user, error) {
+					self.$(".signup-form .error").html(error.message).show();
+					this.$(".signup-form button").removeAttr("disabled");
+				}
+			});
 
-    render: function() {
-      if (Parse.User.current()) {
-        new ManageSpellsView();
-      } else {
-        new LogInView();
-      }
-    }
-  });
+			this.$(".signup-form button").attr("disabled", "disabled");
 
-  var AppRouter = Parse.Router.extend({
-    routes: {
-      "all": "all",
-      "active": "active",
-      "completed": "completed"
-    },
+			return false;
+		},
 
-    initialize: function(options) {
-    },
+		render: function() {
+			this.$el.html(_.template($("#login-template").html()));
+			this.delegateEvents();
+		}
+	});
 
-    all: function() {
-      state.set({ filter: "all" });
-    },
+	// The main view for the app
+	var AppView = Parse.View.extend({
+		// Instead of generating a new element, bind to the existing skeleton of
+		// the App already present in the HTML.
+		el: $("#main"),
 
-    active: function() {
-      state.set({ filter: "active" });
-    },
+		initialize: function() {
+			this.render();
+		},
 
-    completed: function() {
-      state.set({ filter: "completed" });
-    }
-  });
+		render: function() {
+			if (Parse.User.current()) {
+				new ManageSpellsView();
+			} else {
+				new LogInView();
+			}
+		}
+	});
 
-  var state = new AppState;
+	var AppRouter = Parse.Router.extend({
+		routes: {
+			"all": "all",
+			"active": "active",
+			"completed": "completed"
+		},
 
-  new AppRouter;
-  new AppView;
-  Parse.history.start();
+		initialize: function(options) {},
 
-})
+		all: function() {
+			state.set({
+				filter: "all"
+			});
+		},
+
+		active: function() {
+			state.set({
+				filter: "active"
+			});
+		},
+
+		completed: function() {
+			state.set({
+				filter: "completed"
+			});
+		}
+	});
+
+	var state = new AppState;
+
+	new AppRouter;
+	new AppView;
+	Parse.history.start();
+	console.log('ploop');
+
+});
