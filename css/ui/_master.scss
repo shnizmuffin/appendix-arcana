@@ -1,0 +1,24 @@
+body {
+    background: $color-yellow-varden;
+    text-align: center;
+    padding: 0 $base-spacing-unit;
+}
+
+header{
+
+}
+
+#main {
+    width: 500px;
+    margin: auto;
+    text-align: left;
+    background: white;
+    padding: $base-spacing-unit;
+    border: solid #ddd;
+    border-width: 0 1px 1px 1px;
+}
+
+footer{
+    text-align:left;
+    @include font-size($milli-size);
+}
