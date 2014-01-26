@@ -1,16 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
-    
-    <title></title>
-    
-    <link rel="stylesheet" href="css/style.min.css">
+	<meta charset="utf-8">
+
+	<title>Appendix Arcana</title>
+	<meta name="description" content="A Pathfinder RPG Spellbook Builder">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/libs/jquery/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/libs/underscore/underscore-min.js"></script>
+	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
 </head>
+
 <body>
+	<!-- Interface -->
+	<header id="header">
+		<h1>Appendix Arcana</h1>
 
-    
+		<p>A GUI for Mike Chopswil's Paizo Spells Database, designed and developed by Domenic Bonanni.</p>
 
+	</header>
+
+	<div id="main">
+	</div>
+
+	<footer id="footer">
+		<p>Parse Reference Documentation:</p>
+
+		<ul>
+			<li><a href="https://www.parse.com/docs/js_guide" target="_blank">Parse JavaScript Guide</a>
+			</li>
+			<li><a href="https://www.parse.com/docs/js" target="_blank">Parse JavaScript API Documentation</a>
+			</li>
+		</ul>
+
+		<p>This app would not be possible without the following resources:</p>
+
+		<ul>
+			<li>Paizo Spells Database. Copyright 2011 Mike Chopswil, <a href="http://www.d20pfsrd.com" target="_blank">d20pfsrd.com</a>
+			</li>
+			<li>Convert CSV to JSON. Copyright 2013 Data Design Group, Inc.</li>
+			<li>Parse JavaScript SDK. Copyright 2014 Parse, Inc.</li>
+			<li>Backbone.js. Copyright 2010-2013 Jeremy Ashkenas, DocumentCloud</li>
+			<li>Underscore.js. Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters &amp; Editors</li>
+			<li>jQuery.js. Copyright 2014 The jQuery Foundation</li>
+			<li>Inuit.css. Copyright 2012 Harry Roberts</li>
+		</ul>
+	</footer>
+
+	<!-- Templates -->
+	
+	<script type="text/template" id="login-template">
+		<div class="login">
+			<form class="login-form">
+				<h2>Log In</h2>
+				<div class="error" style="display:none"></div>
+				<input type="text" id="login-username" placeholder="Username" />
+				<input type="password" id="login-password" placeholder="Password" />
+				<button>Log In</button>
+			</form>
+
+			<form class="signup-form">
+				<h2>Sign Up</h2>
+				<div class="error" style="display:none"></div>
+				<input type="text" id="signup-username" placeholder="Username" />
+				<input type="password" id="signup-password" placeholder="Create a Password" />
+				<button>Sign Up</button>
+			</form>
+		</div>
+	</script>
+
+	<script type="text/template" id="spell-template">
+		<div class="spell">
+			<h2 class="spell-name"><%= name %></h2>
+			<p class="spell-description"><%= description %></p>
+			<input class="toggle" type="checkbox" <%= known ? 'checked="checked"' : '' %>>
+			<button class="spell-destroy"></button>
+		</div>
+	</script>
+	
 </body>
+
 </html>
