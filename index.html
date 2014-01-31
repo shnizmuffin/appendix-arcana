@@ -95,10 +95,10 @@
 		  <div id="spell-list">
 			<!-- begin spell template -->
 			<div class="spell">
-				<div class="spell-known">
+				<h2 class="spell-name"><%= name %></h2><!--
+			 --><div class="spell-known">
 					<input class="toggle" type="checkbox" <%= known ? 'checked="checked"' : '' %>>
 				</div><!--
-			 --><h2 class="spell-name"><%= name %></h2><!--
 			 --><h3 class="spell-classes"><% spell_level %></h3><!--
 			 --><h4 class="spell-school"><% school %></h4><!--
 			 --><h4 class="spell-descriptor"><% descriptor %></h4><!--
