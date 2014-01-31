@@ -47,7 +47,7 @@
 /*------------------------------------*\
     INUIT.CSS
 \*------------------------------------*/
-/**
+/*!*
  *
  * inuitcss.com -- @inuitcss -- @csswizardry
  *
@@ -383,7 +383,7 @@
  *
  * We work out your end points for you:
  */
-/* normalize.css v2.1.0 | MIT License | git.io/normalize */
+/*! normalize.css v2.1.0 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
    ========================================================================== */
@@ -584,7 +584,7 @@ figure {
  * Define consistent border, margin, and padding.
  */
 fieldset {
-  border: 1px solid silver;
+  border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em; }
 
@@ -2281,7 +2281,7 @@ label,
  * Add/remove floats
  */
 .float--right {
-  float: right!important; }
+  float: right !important; }
 
 .float--left {
   float: left !important; }
@@ -2293,10 +2293,10 @@ label,
  * Text alignment
  */
 .text--left {
-  text-align: left !important; }
+  text-align: left  !important; }
 
 .text--center {
-  text-align: center!important; }
+  text-align: center !important; }
 
 .text--right {
   text-align: right !important; }
@@ -2305,13 +2305,13 @@ label,
  * Font weights
  */
 .weight--light {
-  font-weight: 300!important; }
+  font-weight: 300 !important; }
 
 .weight--normal {
-  font-weight: 400!important; }
+  font-weight: 400 !important; }
 
 .weight--semibold {
-  font-weight: 600!important; }
+  font-weight: 600 !important; }
 
 /**
  * Add/remove margins
@@ -2363,27 +2363,27 @@ label,
   margin-left: 12px !important; }
 
 .flush {
-  margin: 0!important; }
+  margin: 0 !important; }
 
 .flush--top {
-  margin-top: 0!important; }
+  margin-top: 0 !important; }
 
 .flush--right {
-  margin-right: 0!important; }
+  margin-right: 0 !important; }
 
 .flush--bottom {
-  margin-bottom: 0!important; }
+  margin-bottom: 0 !important; }
 
 .flush--left {
-  margin-left: 0!important; }
+  margin-left: 0 !important; }
 
 .flush--ends {
-  margin-top: 0!important;
-  margin-bottom: 0!important; }
+  margin-top: 0 !important;
+  margin-bottom: 0 !important; }
 
 .flush--sides {
-  margin-right: 0!important;
-  margin-left: 0!important; }
+  margin-right: 0 !important;
+  margin-left: 0 !important; }
 
 /**
  * Add/remove paddings
@@ -2435,27 +2435,27 @@ label,
   padding-left: 12px !important; }
 
 .hard {
-  padding: 0!important; }
+  padding: 0 !important; }
 
 .hard--top {
-  padding-top: 0!important; }
+  padding-top: 0 !important; }
 
 .hard--right {
-  padding-right: 0!important; }
+  padding-right: 0 !important; }
 
 .hard--bottom {
-  padding-bottom: 0!important; }
+  padding-bottom: 0 !important; }
 
 .hard--left {
-  padding-left: 0!important; }
+  padding-left: 0 !important; }
 
 .hard--ends {
-  padding-top: 0!important;
-  padding-bottom: 0!important; }
+  padding-top: 0 !important;
+  padding-bottom: 0 !important; }
 
 .hard--sides {
-  padding-right: 0!important;
-  padding-left: 0!important; }
+  padding-right: 0 !important;
+  padding-left: 0 !important; }
 
 /**
  * Pull items full width of `.island` parents.
@@ -2472,13 +2472,13 @@ label,
  * `:hover`.
  */
 .informative {
-  cursor: help!important; }
+  cursor: help !important; }
 
 /**
  * Mute an object by reducing its opacity.
  */
 .muted {
-  opacity: 0.5!important;
+  opacity: 0.5 !important;
   filter: alpha(opacity=50) !important; }
 
 /**
@@ -2488,7 +2488,7 @@ label,
  *
  */
 .proceed {
-  text-align: right!important; }
+  text-align: right !important; }
 
 /**
  * Add a right-angled quote to links that imply movement, e.g.:
@@ -2503,7 +2503,7 @@ label,
  * Apply capital case to an element (usually a `strong`).
  */
 .caps {
-  text-transform: uppercase!important; }
+  text-transform: uppercase !important; }
 
 /**
  * Hide content off-screen without resorting to `display:none;`, also provide
@@ -2511,81 +2511,81 @@ label,
  */
 .accessibility,
 .visuallyhidden {
-  border: 0!important;
+  border: 0 !important;
   clip: rect(0 0 0 0) !important;
-  height: 1px!important;
-  margin: -1px!important;
-  overflow: hidden!important;
-  padding: 0!important;
-  position: absolute!important;
-  width: 1px!important; }
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important; }
 
 @media only screen and (max-width: 480px) {
   .accessibility--palm,
   .visuallyhidden--palm {
-    border: 0!important;
+    border: 0 !important;
     clip: rect(0 0 0 0) !important;
-    height: 1px!important;
-    margin: -1px!important;
-    overflow: hidden!important;
-    padding: 0!important;
-    position: absolute!important;
-    width: 1px!important; } }
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important; } }
 @media only screen and (min-width: 481px) and (max-width: 1023px) {
   .accessibility--lap,
   .visuallyhidden--lap {
-    border: 0!important;
+    border: 0 !important;
     clip: rect(0 0 0 0) !important;
-    height: 1px!important;
-    margin: -1px!important;
-    overflow: hidden!important;
-    padding: 0!important;
-    position: absolute!important;
-    width: 1px!important; } }
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important; } }
 @media only screen and (min-width: 481px) {
   .accessibility--lap-and-up,
   .visuallyhidden--lap-and-up {
-    border: 0!important;
+    border: 0 !important;
     clip: rect(0 0 0 0) !important;
-    height: 1px!important;
-    margin: -1px!important;
-    overflow: hidden!important;
-    padding: 0!important;
-    position: absolute!important;
-    width: 1px!important; } }
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important; } }
 @media only screen and (max-width: 1023px) {
   .accessibility--portable,
   .visuallyhidden--portable {
-    border: 0!important;
+    border: 0 !important;
     clip: rect(0 0 0 0) !important;
-    height: 1px!important;
-    margin: -1px!important;
-    overflow: hidden!important;
-    padding: 0!important;
-    position: absolute!important;
-    width: 1px!important; } }
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important; } }
 @media only screen and (min-width: 1024px) {
   .accessibility--desk,
   .visuallyhidden--desk {
-    border: 0!important;
+    border: 0 !important;
     clip: rect(0 0 0 0) !important;
-    height: 1px!important;
-    margin: -1px!important;
-    overflow: hidden!important;
-    padding: 0!important;
-    position: absolute!important;
-    width: 1px!important; } }
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important; } }
 @media only screen and (min-width: 1200px) {
   .accessibility--desk-wide,
   .visuallyhidden--desk-wide {
-    border: 0!important;
+    border: 0 !important;
     clip: rect(0 0 0 0) !important;
-    height: 1px!important;
-    margin: -1px!important;
-    overflow: hidden!important;
-    padding: 0!important;
-    position: absolute!important;
-    width: 1px!important; } }
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important; } }
 /* endif */
 /**
  * She’s all yours, cap’n... Begin importing your stuff here.
@@ -2596,13 +2596,10 @@ body {
   padding: 0 24px; }
 
 #main {
-  width: 500px;
   margin: auto;
   text-align: left;
   background: white;
-  padding: 24px;
-  border: solid #dddddd;
-  border-width: 0 1px 1px 1px; }
+  padding: 24px; }
 
 footer {
   text-align: left;

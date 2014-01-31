@@ -5,17 +5,27 @@ body {
 }
 
 header{
-
+    
+    h1{}
+    p{}
 }
 
+h1{}
+h2{}
+h3{}
+h4{}
+h5{}
+h6{}
+
+p{}
+
 #main {
-    width: 500px;
     margin: auto;
     text-align: left;
     background: white;
     padding: $base-spacing-unit;
-    border: solid #ddd;
-    border-width: 0 1px 1px 1px;
+
+    .title{}
 }
 
 footer{

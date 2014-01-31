@@ -430,6 +430,5 @@ $(function() {
 	new AppRouter;
 	new AppView;
 	Parse.history.start();
-	console.log('ploop');
 
 });
