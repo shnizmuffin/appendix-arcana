@@ -1587,7 +1587,7 @@ label,
 /**
  * Grid wrapper
  */
-.grid {
+.grid, #spell-list .spell {
   margin-left: -24px;
   list-style: none;
   margin-bottom: 0; }
@@ -1595,13 +1595,13 @@ label,
 /**
  * Very infrequently occuring grid wrappers as children of grid wrappers.
  */
-.grid > .grid {
+.grid > .grid, #spell-list .spell > .grid, #spell-list .grid > .spell, #spell-list .spell > .spell {
   margin-left: 0; }
 
 /**
  * Grid
  */
-.grid__item {
+.grid__item, #spell-list .spell .spell > *, #spell-list .spell .spell-known, #spell-list .spell .spell-name, #spell-list .spell .spell-classes, #spell-list .spell .spell-school, #spell-list .spell .spell-descriptor, #spell-list .spell .spell-range, #spell-list .spell .spell-casting-time, #spell-list .spell .spell-duration, #spell-list .spell .spell-effect, #spell-list .spell .spell-description, #spell-list .spell .spell-source, #spell-list .spell .spell-components, #spell-list .spell .spell-destroy {
   display: inline-block;
   width: 100%;
   padding-left: 24px;
@@ -1624,7 +1624,7 @@ label,
 /**
 * Whole
 */
-.one-whole {
+.one-whole, #spell-list .spell .spell-description {
   width: 100%; }
 
 /**
@@ -1645,16 +1645,16 @@ label,
 /**
 * Quarters
 */
-.one-quarter, .two-eighths, .three-twelfths {
+.one-quarter, .two-eighths, .three-twelfths, #spell-list .spell .spell-school {
   width: 25%; }
 
-.three-quarters, .six-eighths, .nine-twelfths {
+.three-quarters, .six-eighths, .nine-twelfths, #spell-list .spell .spell-classes {
   width: 75%; }
 
 /**
 * Fifths
 */
-.one-fifth, .two-tenths {
+.one-fifth, .two-tenths, #spell-list .spell .spell-descriptor, #spell-list .spell .spell-range, #spell-list .spell .spell-casting-time, #spell-list .spell .spell-duration, #spell-list .spell .spell-effect, #spell-list .spell .spell-source {
   width: 20%; }
 
 .two-fifths, .four-tenths {
@@ -1663,7 +1663,7 @@ label,
 .three-fifths, .six-tenths {
   width: 60%; }
 
-.four-fifths, .eight-tenths {
+.four-fifths, .eight-tenths, #spell-list .spell .spell-components {
   width: 80%; }
 
 /**
@@ -1678,7 +1678,7 @@ label,
 /**
 * Eighths
 */
-.one-eighth {
+.one-eighth, #spell-list .spell .spell-known {
   width: 12.5%; }
 
 .three-eighths {
@@ -1687,7 +1687,7 @@ label,
 .five-eighths {
   width: 62.5%; }
 
-.seven-eighths {
+.seven-eighths, #spell-list .spell .spell-name {
   width: 87.5%; }
 
 /**

@@ -95,19 +95,21 @@
 		  <div id="spell-list">
 			<!-- begin spell template -->
 			<div class="spell">
-				<input class="toggle" type="checkbox" <%= known ? 'checked="checked"' : '' %>>
-				<h2 class="spell-name"><%= name %></h2>
-				<h3 class="spell-classes"><% spell_level %></h3>
-				<h4 class="spell-school"><% school %></h4>
-				<h4 class="spell-descriptor"><% descriptor %></h4>
-				<h4 class="spell-range"><% range %></h4>
-				<h4 class="spell-casting-time"><% casting_time %></h4>
-				<h4 class="spell-duration"><% duration %></h4>
-				<h4 class="spell-effect"><% effect %></h4>
-				<p class="spell-description"><%= description %></p>
-				<p class="spell-source"><% source %></p>
-				<h4 class="spell-components"><% components %></h4>
-				<button class="spell-destroy"></button>
+				<div class="spell-known">
+					<input class="toggle" type="checkbox" <%= known ? 'checked="checked"' : '' %>>
+				</div><!--
+			 --><h2 class="spell-name"><%= name %></h2><!--
+			 --><h3 class="spell-classes"><% spell_level %></h3><!--
+			 --><h4 class="spell-school"><% school %></h4><!--
+			 --><h4 class="spell-descriptor"><% descriptor %></h4><!--
+			 --><h4 class="spell-range"><% range %></h4><!--
+			 --><h4 class="spell-casting-time"><% casting_time %></h4><!--
+			 --><h4 class="spell-duration"><% duration %></h4><!--
+			 --><h4 class="spell-effect"><% effect %></h4><!--
+			 --><p class="spell-description"><%= description %></p><!--
+			 --><p class="spell-source"><% source %></p><!--
+			 --><h4 class="spell-components"><% components %></h4><!--
+			 --><button class="spell-destroy">Remove</button>
 			</div>
 			<!-- end spell template -->
 			<!-- begin extreneous instances for styling -->

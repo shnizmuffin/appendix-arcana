@@ -6,17 +6,73 @@
 
 		border:1px solid black;
 		margin:$half-spacing-unit;
-		
+
+		@extend .grid;
+
+		.spell > * {
+			@extend .grid__item;
+		}
+		.spell-known{
+			@extend .grid__item;
+			@extend .one-eighth;
+		}
 		.spell-name{
+			@extend .grid__item;
+			@extend .seven-eighths;
+
+		}
+		.spell-classes{
+			@extend .grid__item;
+			@extend .three-quarters;
+
+		}
+		.spell-school{
+			@extend .grid__item;
+			@extend .one-quarter;
+
+		}
+		.spell-descriptor{
+			@extend .grid__item;
+			@extend .one-fifth;
+
+		}
+		.spell-range{
+			@extend .grid__item;
+			@extend .one-fifth;
+
+		}
+		.spell-casting-time{
+			@extend .grid__item;
+			@extend .one-fifth;
+
+		}
+		.spell-duration{
+			@extend .grid__item;
+			@extend .one-fifth;
+
+		}
+		.spell-effect{
+			@extend .grid__item;
+			@extend .one-fifth;
 
 		}
 		.spell-description{
+			@extend .grid__item;
+			@extend .one-whole;
 
 		}
-		.toggle{
+		.spell-source{
+			@extend .grid__item;
+			@extend .one-fifth;
+
+		}
+		.spell-components{
+			@extend .grid__item;
+			@extend .four-fifths;
 
 		}
 		.spell-destroy{
+			@extend .grid__item;
 
 		}
 	}
