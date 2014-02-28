@@ -1,35 +1,37 @@
-##### OS Files
+### DEVELOPER IGNORES ###
+_src
+_scratch
 
-# Windows
+### PROJECT IGNORES ###
 
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-*.cab
-*.msi
-*.msm
-*.msp
+# zip'd Deliveries
+*.zip
 
-# OSX
+### PROCESSOR IGNORES ###
 
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon
-._*
-.Spotlight-V100
-.Trashes
+# SASS
+*.sass-cache
+*.scssc
 
-##### Program Files
+# GRUNT & NODE
+node_modules
+
+### SOFTWARE IGNORES ###
+
+# SublimeText 2
+*.sublime-workspace
+*.sublime-project
+
+# TextMate
+*.tmproj
+*.tmproject
+tmtags
 
 # Dreamweaver
-
 _notes
 dwsync.xml
 
 # Eclipse
-
 *.pydevproject
 .metadata
 .gradle
@@ -46,22 +48,38 @@ local.properties
 *.launch
 .cproject
 .buildpath
+.target
 .texlipse
 
-# SublimeText
+### OS IGNORES ###
 
-*.sublime-workspace
-*.sublime-project
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
 
-# TextMate
+# Windows Folder config file
+Desktop.ini
 
-*.tmproj
-*.tmproject
-tmtags
+# Windows Recycle Bin used on file shares
+$RECYCLE.BIN/
 
-##### Utility Files
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
 
-# SASS
+# OSX System Files
+.DS_Store
+.AppleDouble
+.LSOverride
 
-*.sass-cache
-*.scssc
+# OSX Icon must ends with two \r.
+Icon
+
+# OSX Thumbnails
+._*
+
+# OSX Files that might appear on external disk
+.Spotlight-V100
+.Trashes
