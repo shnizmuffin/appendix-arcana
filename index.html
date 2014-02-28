@@ -7,7 +7,7 @@
 	<title>Appendix Arcana</title>
 	<meta name="description" content="A Pathfinder RPG Spellbook Builder">
 	<meta name="viewport" content="width=device-width, minimum-scale=1.0">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/appendix-arcana.css">
 	<script type="text/javascript" src="js/libs/jquery/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/libs/underscore/underscore-min.js"></script>
 	<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.16.min.js"></script>
@@ -79,9 +79,10 @@
 				<!-- end stats template -->
 				</div>
 			</div>
-	  </div>
+		</div>
+		<!-- end manage spell list template -->
 
-	  <div id="spell-search">
+		<div id="spell-search">
 
 		<div id="spell-search-by-name">
 		  <input placeholder="Search for a spell by name" type="text" />
@@ -97,7 +98,7 @@
 			<div class="spell">
 				<h2 class="spell-name"><%= name %></h2><!--
 			 --><div class="spell-known">
-					<input class="toggle" type="checkbox" <%= known ? 'checked="checked"' : '' %>>
+					<input class="toggle" type="checkbox" <%= known ? 'checked="checked"' : '' %>
 				</div><!--
 			 --><h3 class="spell-classes"><% spell_level %></h3><!--
 			 --><h4 class="spell-school"><% school %></h4><!--
@@ -112,20 +113,6 @@
 			 --><button class="spell-destroy">Remove</button>
 			</div>
 			<!-- end spell template -->
-			<!-- begin extreneous instances for styling -->
-			<div class="spell">
-				<h2 class="spell-name"><%= name %></h2>
-				<p class="spell-description"><%= description %></p>
-				<input class="toggle" type="checkbox" <%= known ? 'checked="checked"' : '' %>>
-				<button class="spell-destroy"></button>
-			</div>
-			<div class="spell">
-				<h2 class="spell-name"><%= name %></h2>
-				<p class="spell-description"><%= description %></p>
-				<input class="toggle" type="checkbox" <%= known ? 'checked="checked"' : '' %>>
-				<button class="spell-destroy"></button>
-			</div>
-			<!-- end extreneous instances for styling -->
 
 		  </div>
 		</div>
@@ -151,6 +138,8 @@
 			<li>Paizo Spells Database. Copyright 2011 Mike Chopswil, <a href="http://www.d20pfsrd.com" target="_blank">d20pfsrd.com</a></li>
 			<li>Convert CSV to JSON. Copyright 2013 Data Design Group, Inc.</li>
 			<li>Parse JavaScript SDK. Copyright 2014 Parse, Inc.</li>
+			<li>NodeJS. Copyright 2014 Joyent, Inc, Node.js is a trademark of Joyent, Inc.</li>
+			<li>GruntJS. Copyright 2014 Bocoup.</li>
 			<li>Backbone.js. Copyright 2010-2013 Jeremy Ashkenas, DocumentCloud</li>
 			<li>Underscore.js. Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters &amp; Editors</li>
 			<li>jQuery.js. Copyright 2014 The jQuery Foundation</li>
@@ -182,10 +171,21 @@
 
 	<script type="text/template" id="spell-template">
 		<div class="spell">
-			<h2 class="spell-name"><%= name %></h2>
-			<p class="spell-description"><%= description %></p>
-			<input class="toggle" type="checkbox" <%= known ? 'checked="checked"' : '' %>>
-			<button class="spell-destroy"></button>
+			<h2 class="spell-name"><%= name %></h2><!--
+		 --><div class="spell-known">
+				<input class="toggle" type="checkbox" <%= known ? 'checked="checked"' : '' %>
+			</div><!--
+		 --><h3 class="spell-classes"><% spell_level %></h3><!--
+		 --><h4 class="spell-school"><% school %></h4><!--
+		 --><h4 class="spell-descriptor"><% descriptor %></h4><!--
+		 --><h4 class="spell-range"><% range %></h4><!--
+		 --><h4 class="spell-casting-time"><% casting_time %></h4><!--
+		 --><h4 class="spell-duration"><% duration %></h4><!--
+		 --><h4 class="spell-effect"><% effect %></h4><!--
+		 --><p class="spell-description"><%= description %></p><!--
+		 --><p class="spell-source"><% source %></p><!--
+		 --><h4 class="spell-components"><% components %></h4><!--
+		 --><button class="spell-destroy">Remove</button>
 		</div>
 	</script>
 
