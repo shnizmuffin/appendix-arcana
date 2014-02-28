@@ -149,7 +149,7 @@ $(function() {
 	var ManageSpellsView = Parse.View.extend({
 
 		// Our template for the line of statistics at the bottom of the app.
-		//statsTemplate: _.template($('#stats-template').html()),
+		statsTemplate: _.template($('#stats-template').html()),
 
 		// Delegated events for creating new items, and clearing completed ones.
 		events: {
@@ -177,18 +177,20 @@ $(function() {
 			this.allCheckbox = this.$("#toggle-all")[0];
 
 			// Create our collection of Spells
-			this.spells = new SpellList;
+			this.spells = new SpellList();
 
 			// Setup the query for the collection to look for spells from the current user
 			this.spells.query = new Parse.Query(SpellObject);
-			this.spells.query.equalTo("user", Parse.User.current());
+			this.spells.query.equalTo("source", "APG");
 
-			this.spells.bind('add', this.addOne);
-			this.spells.bind('reset', this.addAll);
-			this.spells.bind('all', this.render);
+			//this.spells.bind('add', this.addOne);
+			//this.spells.bind('reset', this.addAll);
+			//this.spells.bind('all', this.render);
 
 			// Fetch all the spell items for this user
+			console.log('fetching spells');
 			this.spells.fetch();
+			console.log('spells fetched');
 
 			state.on("change", this.filter, this);
 		},
@@ -204,14 +206,14 @@ $(function() {
 		// Re-rendering the App just means refreshing the statistics -- the rest
 		// of the app doesn't change.
 		render: function() {
-			//var known = this.spells.known().length;
+			var known = this.spells.known().length;
 			//var remaining = this.spells.remaining().length;
 
-			//this.$('#todo-stats').html(this.statsTemplate({
-			//	total: this.spells.length,
-			//	known: known
-				//  remaining:  remaining
-			//}));
+			this.$('#spell-stats').html(this.statsTemplate({
+				total: this.spells.length,
+				known: known
+				  //remaining:  remaining
+			}));
 
 			this.delegateEvents();
 
