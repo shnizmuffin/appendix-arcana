@@ -28,108 +28,16 @@
 			<h1>Spellbook</h1>
 		</div>
 
-	  <div class="content">
-
-		<!-- begin login template -->
-		<div class="login">
-			<form class="login-form">
-				<h2>Log In</h2>
-				<div class="error" style="display:none"></div>
-				<input type="text" class="username" id="login-username" placeholder="Username" />
-				<input type="password" class="password" id="login-password" placeholder="Password" />
-				<button>Log In</button>
-			</form>
-
-			<form class="signup-form">
-				<h2>Sign Up</h2>
-				<div class="error" style="display:none"></div>
-				<input type="text" class="username" id="signup-username" placeholder="Username" />
-				<input type="password" class="password" id="signup-password" placeholder="Create a Password" />
-				<button>Sign Up</button>
-			</form>
-		</div>
-		<!-- end login template -->
-
-		<!-- begin manage spell list template -->
-		<div id="user-console">
-			<div id="btn-my-spells">
-				<p>My Spells</p>
-			</div>
-
-			<div id="user-info"></div>
-				<p>Signed in as <%= Parse.User.current().get("username") %> (<a href="#" class="log-out">Log out</a>)</p>
-				
-				<div id="spell-stats">
-				<!-- begin stats template -->
-					<div id="stats">
-						<span id="spell-count"><strong><%= remaining %></strong> <%= remaining == 1 ? 'item' : 'items' %> left</span>
-						<!--<ul id="filters">
-						  <li>
-							<a href="javascript:void(0)" id="all" class="selected">All</a>
-						  </li>
-						  <li>
-							<a href="javascript:void(0)" id="active">Active</a>
-						  </li>
-						  <li>
-							<a href="javascript:void(0)" id="completed">Completed</a>
-						  </li>
-						</ul>-->
-						<button id="clear-completed">Clear completed (<%= done %>)</button>
-					</div>
-				<!-- end stats template -->
-				</div>
-			</div>
-		</div>
-		<!-- end manage spell list template -->
-
-		<div id="spell-search">
-
-		<div id="spell-search-by-name">
-		  <input placeholder="Search for a spell by name" type="text" />
-		  <div id="btn-search"><p>Search</p></div>
-
-		  <div id="btn-refine-search"><p>Refine</p></div>
-
-		</div>
-
-		<div id="main">
-		  <div id="spell-list">
-			<!-- begin spell template -->
-			<div class="spell">
-				<h2 class="spell-name"><%= name %></h2><!--
-			 --><div class="spell-known">
-					<input class="toggle" type="checkbox" <%= known ? 'checked="checked"' : '' %>
-				</div><!--
-			 --><h3 class="spell-classes"><% spell_level %></h3><!--
-			 --><h4 class="spell-school"><% school %></h4><!--
-			 --><h4 class="spell-descriptor"><% descriptor %></h4><!--
-			 --><h4 class="spell-range"><% range %></h4><!--
-			 --><h4 class="spell-casting-time"><% casting_time %></h4><!--
-			 --><h4 class="spell-duration"><% duration %></h4><!--
-			 --><h4 class="spell-effect"><% effect %></h4><!--
-			 --><p class="spell-description"><%= description %></p><!--
-			 --><p class="spell-source"><% source %></p><!--
-			 --><h4 class="spell-components"><% components %></h4><!--
-			 --><button class="spell-destroy">Remove</button>
-			</div>
-			<!-- end spell template -->
-
-		  </div>
-		</div>
-
-	  </div>
-		<!-- end manage spell list template -->
-	  </div>
-	</div>
+		<div class="content">
+		</div><!-- /content -->
+	</div><!-- /main -->
 
 	<footer id="footer">
 		<p>Parse Reference Documentation:</p>
 
 		<ul>
-			<li><a href="https://www.parse.com/docs/js_guide" target="_blank">Parse JavaScript Guide</a>
-			</li>
-			<li><a href="https://www.parse.com/docs/js" target="_blank">Parse JavaScript API Documentation</a>
-			</li>
+			<li><a href="https://www.parse.com/docs/js_guide" target="_blank">Parse JavaScript Guide</a></li>
+			<li><a href="https://www.parse.com/docs/js" target="_blank">Parse JavaScript API Documentation</a></li>
 		</ul>
 
 		<p>This app would not be possible without the following resources:</p>
@@ -190,53 +98,62 @@
 	</script>
 
 	<script type="text/template" id="manage-spells-template">
-	  <div id="user-console">
+	<div id="user-console">
 		<div id="btn-my-spells">
 			<p>My Spells</p>
 		</div>
 
-		<div id="user-info"></div>
+		<div id="user-info">
 			<p>Signed in as <%= Parse.User.current().get("username") %> (<a href="#" class="log-out">Log out</a>)</p>
 		</div>
 
-		<div id="spell-stats"></div>
-	  </div>
+		<div id="spell-stats">
+		</div>
+	</div>
 
-	  <div id="spell-search">
+	<div id="spell-search">
 
 		<div id="spell-search-by-name">
-		  <input placeholder="Search for a spell by name" type="text" />
-		  <div id="btn-search"><p>Search</p></div>
+			<input placeholder="Search for a spell by name" type="text" />
+			
+			<div id="btn-search">
+				<p>Search</p>
+			</div>
 
-		  <div id="btn-refine-search"><p>Refine</p></div>
+			<div id="btn-refine-search">
+				<p>Refine</p>
+			</div>
 
 		</div>
+	
+	</div>
 
-		<div id="main">
-		  <ul id="spell-list">
-			<img src='images/spinner.gif' class='spinner' />
-		  </ul>
-		</div>
+	<div id="main">
+		<ul id="spell-list">
+			<li>Loading...</li>
+		</ul>
+	</div>
 
-	  </div>
 	</script>
 
 	<script type="text/template" id="stats-template">
-	  <div id="stats">
+	<div id="stats">
 		<span id="spell-count"><strong><%= remaining %></strong> <%= remaining == 1 ? 'item' : 'items' %> left</span>
 		<ul id="filters">
-		  <li>
-			<a href="javascript:void(0)" id="all" class="selected">All</a>
-		  </li>
-		  <li>
-			<a href="javascript:void(0)" id="active">Active</a>
-		  </li>
-		  <li>
-			<a href="javascript:void(0)" id="completed">Completed</a>
-		  </li>
+			<li>
+				<a href="javascript:void(0)" id="all" class="selected">All</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)" id="active">Active</a>
+			</li>
+			<li>
+				<a href="javascript:void(0)" id="completed">Completed</a>
+			</li>
 		</ul>
+		
 		<button id="clear-completed">Clear completed (<%= done %>)</button>
-	  </div>
+	  
+	</div>
 	</script>
 
 </body>
